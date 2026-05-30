@@ -1,0 +1,36 @@
+{
+  "name": "video-processing-api",
+  "version": "1.0.0",
+  "description": "Video processing API with FFmpeg, SSE progress tracking, compression, audio extraction, thumbnail generation, and format conversion.",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [
+    "ffmpeg",
+    "video-processing",
+    "express",
+    "nodejs",
+    "sse",
+    "video-compression",
+    "audio-extraction",
+    "thumbnail-generation",
+    "video-format-conversion",
+    "rest-api"
+  ],
+  "author": "Amir Malik",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
