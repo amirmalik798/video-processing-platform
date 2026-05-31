@@ -27,29 +27,9 @@ export const compressVideo = async (clientId, inputPath, outputPath) => {
         '-y',
         '-i',
         inputPath,
-
-        '-vf',
-        'scale=min(1920\\,iw):-2',
-
-        '-c:v',
-        'libx264',
-
-        '-preset',
-        'veryfast',
-
         '-crf',
-        '28',
-
-        '-c:a',
-        'aac',
-
-        '-b:a',
-        '128k',
-
-        '-threads',
-        '1',
-
-        outputPath
+        COMPRESSION_CRF,
+        outputPath 
     ];
 
     await runMediaOperation(clientId, inputPath, args);
@@ -77,8 +57,6 @@ export const generateThumbnail = async (clientId, inputPath, outputPath, timesta
         timestamp,
         '-i',
         inputPath,
-        '-vf',
-        'scale=640:-2',
         '-frames:v',
         '1',
         outputPath
@@ -95,28 +73,6 @@ export const convertFormat = async (clientId, inputPath, outputPath) => {
         '-y',
         '-i',
         inputPath,
-
-        '-vf',
-        'scale=min(1280\\,iw):-2',
-
-        '-c:v',
-        'libx264',
-
-        '-preset',
-        'veryfast',
-
-        '-crf',
-        '28',
-
-        '-c:a',
-        'aac',
-
-        '-b:a',
-        '128k',
-
-        '-threads',
-        '1',
-
         outputPath
     ];
 
