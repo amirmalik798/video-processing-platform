@@ -104,6 +104,7 @@ export const useVideoProcessor = () => {
             setFilename(data.filename);
             setState(STATES.UPLOADED);
             setUploadProgress(100);
+            setLastOperation('Video Uploaded');
         } catch(error) {
             setError(error.response?.data?.message || error.message || 'Something went wrong');
             setState(STATES.ERROR);
