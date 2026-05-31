@@ -24,6 +24,7 @@ const runMediaOperation = async (clientId, inputPath, args) => {
 
 export const compressVideo = async (clientId, inputPath, outputPath) => {
     const args = [
+        '-y',
         '-i',
         inputPath,
         '-crf',
@@ -36,6 +37,7 @@ export const compressVideo = async (clientId, inputPath, outputPath) => {
 
 export const extractAudio = async (clientId, inputPath, outputPath) => {
     const args = [
+        '-y',
         '-i',
         inputPath,
         '-vn',
@@ -47,16 +49,17 @@ export const extractAudio = async (clientId, inputPath, outputPath) => {
     await runMediaOperation(clientId, inputPath, args);
 };
 
-export const generateThumbnail = async (clientId, inputPath, outputPath) => {
+export const generateThumbnail = async (clientId, inputPath, outputPath, timestamp) => {
     
     const args = [
-        '-i', // input source
+        '-y',
+        '-ss',
+        timestamp,
+        '-i',
         inputPath,
-        '-ss', // seek to 1 second
-        '00:00:01',
-        '-frames:v', //capture one frame
+        '-frames:v',
         '1',
-        outputPath 
+        outputPath
     ];
 
     await runFFmpeg(args);
@@ -67,6 +70,7 @@ export const generateThumbnail = async (clientId, inputPath, outputPath) => {
 
 export const convertFormat = async (clientId, inputPath, outputPath) => {
     const args = [
+        '-y',
         '-i',
         inputPath,
         outputPath
