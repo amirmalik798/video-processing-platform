@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-    <div className='min-h-screen bg-slate-100 flex justify-center items-center p-4'>
+    <div className='min-h-screen bg-slate-100 flex justify-center items-center p-2'>
       
       <div className='bg-white rounded-xl shadow-lg p-8 w-full max-w-2xl space-y-6'>
         <div className='text-center space-y-2'>
@@ -24,7 +24,6 @@ function App() {
         </p>
         </div>
 
-        
         <UploadSection {...videoProcessor } />
 
         <ActionButtons {...videoProcessor } />

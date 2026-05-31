@@ -6,7 +6,9 @@ const UploadSection = (videoProcessor) => {
         <div className='space-y-4'>
             <input id='video-upload' className='hidden'
             disabled={isDisabled} accept='video/*' type='file' 
-            onChange={(e) => videoProcessor.setFile(e.target.files[0])} />
+            onChange={(e) => { 
+                videoProcessor.reset(); 
+                videoProcessor.setFile(e.target.files[0])}} />
 
             {!videoProcessor.isFileSelected && (
                 <>
@@ -55,7 +57,9 @@ const UploadSection = (videoProcessor) => {
 
                             <button type='button' className='text-red-600
                             hover:text-red-700'
-                            onClick={videoProcessor.clearFile}>
+                            onClick={() => {
+                                videoProcessor.reset();
+                                videoProcessor.clearFile()}}>
                                 Remove
                             </button>
                             </div>
