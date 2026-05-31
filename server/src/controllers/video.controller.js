@@ -77,7 +77,7 @@ export const extractAudio = async (req, res, next) => {
 
 
 export const generateThumbnail = async (req, res, next) => {
-    const { clientId, filename } = req.body;
+    const { clientId, filename, timestamp } = req.body;
 
     const inputPath = getUploadedFilePath(filename);
     const baseName = path.parse(filename).name;
@@ -85,7 +85,7 @@ export const generateThumbnail = async (req, res, next) => {
     const outputPath = getThumbnailFilePath(outputFilename);
 
     try {
-        await videoService.generateThumbnail(clientId, inputPath, outputPath);
+        await videoService.generateThumbnail(clientId, inputPath, outputPath, timestamp);
         return res.status(200).json({
             success: true,
             message: 'Thumbnail generated successfully',
