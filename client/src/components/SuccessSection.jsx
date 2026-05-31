@@ -1,6 +1,6 @@
 
 const SuccessSection = (videoProcessor) => {
-    if (!videoProcessor.isReady) {
+    if (!videoProcessor.isReady && !videoProcessor.isUploaded) {
         return null;
     }
 
