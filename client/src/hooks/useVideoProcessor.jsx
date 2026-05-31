@@ -56,6 +56,7 @@ export const useVideoProcessor = () => {
         setUploadProgress(0);
         setOperation('');
         setLastOperation('');
+        setThumbnailTime(0);
     };
 
     useEffect(() => {
