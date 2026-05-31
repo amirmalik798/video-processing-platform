@@ -8,7 +8,8 @@ const UploadSection = (videoProcessor) => {
             disabled={isDisabled} accept='video/*' type='file' 
             onChange={(e) => { 
                 videoProcessor.reset(); 
-                videoProcessor.setFile(e.target.files[0])}} />
+                videoProcessor.setFile(e.target.files[0])
+                e.target.value = ''}} />
 
             {!videoProcessor.isFileSelected && (
                 <>
