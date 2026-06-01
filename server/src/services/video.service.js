@@ -27,8 +27,14 @@ export const compressVideo = async (clientId, inputPath, outputPath) => {
         '-y',
         '-i',
         inputPath,
+        '-c:v',
+        'libx264',
         '-crf',
-        COMPRESSION_CRF,
+        String(COMPRESSION_CRF),
+        '-threads',
+        '2',
+        '-preset',
+        'veryfast',
         outputPath 
     ];
 
