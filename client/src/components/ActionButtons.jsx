@@ -32,10 +32,6 @@ const ActionButtons = (videoProcessor) => {
     if (videoProcessor.isProcessing) {
         return null;
     }
-
-    if (videoProcessor.isReady) {
-        return null;
-    }
     
     return (
         <div className='space-y-4'>
