@@ -29,10 +29,10 @@ const ActionButtons = (videoProcessor) => {
 
     const selectedAction = actions.find(action => action.id === videoProcessor.selectedOperation);
 
-    if (videoProcessor.isProcessing) {
+    if (videoProcessor.isProcessing || videoProcessor.isUploading) {
         return null;
     }
-    
+
     return (
         <div className='space-y-4'>
             <h2 className='font-semibold text-amber-500'>Operations</h2>
