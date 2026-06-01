@@ -29,7 +29,8 @@ export const runFFmpeg = async (args, onProgress) => {
             reject(new Error(`Failed to start FFmpeg: ${error.message}`));
         });
 
-        ffmpeg.on('close', (code) => {
+        ffmpeg.on('close', (code, signal) => {
+            console.log('FFmpeg closed: ', { code, signal });
             if (code === 0) {
                 resolve();
             } else {
