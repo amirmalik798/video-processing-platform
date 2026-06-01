@@ -26,15 +26,18 @@ export const runFFmpeg = async (args, onProgress) => {
         });
 
         ffmpeg.on('error', (error) => {
-            reject(new Error(`Failed to start FFmpeg: ${error.message}`));
+            return reject(new Error(`Failed to start FFmpeg: ${error.message}`));
         });
 
         ffmpeg.on('close', (code, signal) => {
             console.log('FFmpeg closed: ', { code, signal });
+            if (signal) { // handles both SIGKILL and SIGTERM
+                return reject(new Error('This video exceeds the processing limit of the current server. Please try a shorter video or lower resolution.'));
+            }
             if (code === 0) {
-                resolve();
+                return resolve();
             } else {
-                reject(new Error(`FFmpeg exited with code ${code}\n${stderr}`));
+                return reject(new Error(`FFmpeg exited with code ${code}\n${stderr}`));
             }
         });
     });
