@@ -4,78 +4,60 @@ const UploadSection = (videoProcessor) => {
     
     return (
         <div className='space-y-4'>
-            <input id='video-upload' className='hidden'
-            disabled={isDisabled} accept='video/*' type='file' 
-            onChange={(e) => { 
-                videoProcessor.reset(); 
-                videoProcessor.setFile(e.target.files[0])
-                e.target.value = ''}} />
+            <input id='video-upload' className='hidden' disabled={isDisabled} accept='video/*' type='file' 
+            onChange={(e) => { videoProcessor.reset(); videoProcessor.setFile(e.target.files[0]); e.target.value = ''}} />
 
-            {!videoProcessor.isFileSelected && (
-                <>
-                    <label htmlFor="video-upload"
-                    className='block w-full cursor-pointer border-2 border-dashed
-                    border-slate-300 rounded-xl p-8 text-center hover:border-blue-500
-                    hover:bg-slate-50 transition-colors'>
-                        <div className='space-y-2'>
-                            <p className='text-3xl'>📹</p>
-                            <p className='font-medium'>
-                                Select Video
-                            </p>
-                            <p className='text-sm text-slate-500'>
-                                Choose a video to process
-                            </p>
-                        </div>
-                    </label>
-
-                    
-                </>
+            {!videoProcessor.isFileSelected &&
+            (
+                <label htmlFor='video-upload' className='block w-full cursor-pointer border-2 border-dashed
+                border-slate-500 rounded-xl p-8 text-center hover:bg-slate-800 hover:border-amber-400
+                hover:scale-[1.01] transition-all duration-200'>
+                    <div className='space-y-2'>
+                        <p className='text-3xl md:text-4xl'>📹</p>
+                        <p className='font-medium text-amber-500'>Select Video</p>
+                        <p className='text-sm text-slate-400'>Please select a video</p>
+                    </div>
+                </label>
             )}
 
-            {videoProcessor.isFileSelected && (
+            {videoProcessor.isFileSelected && 
+            (
                 <>
-                    <div className='space-y-3'>
-                        <video className='w-full rounded-xl max-h-80 border border-slate-200'
-                        controls src={videoProcessor.previewUrl}
-                        onTimeUpdate={(e) => videoProcessor.setThumbnailTime(e.target.currentTime)} />
-                    </div>
+                <div>
+                    <video className='w-full rounded-xl max-h-80 shadow-amber-400 shadow-md border border-amber-400'
+                    controls src={videoProcessor.previewUrl}
+                    onTimeUpdate={(e) => videoProcessor.setThumbnailTime(e.target.currentTime)}>
+                    </video>
+                </div>
 
-                    <div className='bg-slate-50 border border-slate-200 rounded-lg p-3'>
-                        <p className='text-sm text-slate-500'>
-                            Selected File
-                        </p>
-
-                        <p className='font-medium break-all'>
-                            {videoProcessor.file.name}
-                        </p>
-
-                        {!isDisabled && <div className='flex gap-2 mt-2'>
-                            <label htmlFor='video-upload'
-                            className='text-blue-600 cursor-pointer
-                            hover:text-blue-700'>
+                <div className='border border-slate-600 rounded-lg p-3'>
+                    <p className='text-base text-amber-500'>Selected Video: </p>
+                    <p className='font-medium text-slate-300 break-all'>
+                        {videoProcessor.file.name}
+                    </p>
+                    {!isDisabled && 
+                    (
+                        <>
+                        <div className='flex gap-2 mt-2 justify-end'>
+                            <label className='text-sm text-amber-400 cursor-pointer hover:text-amber-300'
+                            htmlFor="video-upload">
                                 Change Video
                             </label>
-
-                            <button type='button' className='text-red-600
-                            hover:text-red-700'
-                            onClick={() => {
-                                videoProcessor.reset();
-                                videoProcessor.clearFile()}}>
-                                Remove
-                            </button>
-                            </div>
-                        }
-                    </div>
-                    <button className='w-full bg-blue-600 text-white font-medium
-                    px-4 py-3 rounded-lg hover:bg-blue-700 disabled:bg-slate-400
-                    transition-colors'
-                    disabled={!videoProcessor.canUpload}
-                    onClick={videoProcessor.handleUploadVideo}>
-                        {videoProcessor.isUploading ? 'Uploading...' : 'Upload'}
-                    </button>
+                            <button type='button' className='text-sm text-red-400 hover:text-red-300'
+                            onClick={() => { videoProcessor.reset(); videoProcessor.clearFile(); }}>
+                            Remove</button>
+                        </div>
+                        <button className='w-full bg-amber-500 hover:bg-amber-600 mt-2 rounded-lg py-3 px-4 text-slate-900
+                        transition-colors disabled:bg-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed' 
+                        disabled={!videoProcessor.canUpload} onClick={videoProcessor.handleUploadVideo}>
+                        {videoProcessor.isUploading ? 'Uploading Video...' : 'Upload Video'}
+                        </button>
+                        </>
+                    )}
+                </div>
                 </>
             )}
-        </div>
+        </div>              
     )
 }
 
