@@ -24,7 +24,7 @@ const UploadSection = (videoProcessor) => {
             (
                 <>
                 <div>
-                    <video className='w-full rounded-xl max-h-80 shadow-amber-400 shadow-md border border-amber-400'
+                    <video className='w-full rounded-xl max-h-56 object-contain shadow-amber-400 shadow-md border border-amber-400'
                     controls src={videoProcessor.previewUrl}
                     onTimeUpdate={(e) => videoProcessor.setThumbnailTime(e.target.currentTime)}>
                     </video>
@@ -47,11 +47,12 @@ const UploadSection = (videoProcessor) => {
                             onClick={() => { videoProcessor.reset(); videoProcessor.clearFile(); }}>
                             Remove</button>
                         </div>
-                        <button className='w-full bg-amber-500 hover:bg-amber-600 mt-2 rounded-lg py-3 px-4 text-slate-900
+                        { !videoProcessor.isUploaded && 
+                        ( <button className='w-full bg-amber-500 hover:bg-amber-600 mt-2 rounded-lg py-3 px-4 text-slate-900
                         transition-colors disabled:bg-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed' 
                         disabled={!videoProcessor.canUpload} onClick={videoProcessor.handleUploadVideo}>
                         {videoProcessor.isUploading ? 'Uploading Video...' : 'Upload Video'}
-                        </button>
+                        </button> )}
                         </>
                     )}
                 </div>
