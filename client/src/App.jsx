@@ -38,7 +38,6 @@ function App() {
         <p className='text-base md:text-xl text-center text-slate-500 pt-4'>Developed by: Amir Malik</p>
       
       </div>
-
     </div>
   
   )
