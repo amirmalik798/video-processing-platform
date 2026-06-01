@@ -33,6 +33,10 @@ const ActionButtons = (videoProcessor) => {
         return null;
     }
 
+    if (videoProcessor.isReady) {
+        return null;
+    }
+    
     return (
         <div className='space-y-4'>
             <h2 className='font-semibold text-amber-500'>Operations</h2>
