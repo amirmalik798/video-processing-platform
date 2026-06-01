@@ -72,6 +72,9 @@ export const extractAudio = async (req, res, next) => {
             }
         });
     } catch(error) {
+        if (error.message.includes('does not contain any stream')) {
+            return next(new AppError('This video does not contain an audio track'));
+        }
         return next(error);
     }
 };
