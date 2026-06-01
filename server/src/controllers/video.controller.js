@@ -48,6 +48,7 @@ export const compressVideo = async (req, res, next) => {
             }
         });
     } catch(error) {
+        console.error(error);
         return next(error);
     }
 };
