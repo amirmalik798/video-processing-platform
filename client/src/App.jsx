@@ -25,19 +25,20 @@ function App() {
 
         <UploadSection {...videoProcessor } />
 
-        <ActionButtons {...videoProcessor } />
-
+        <ProgressSection {...videoProcessor } />
+        
         <ErrorSection {...videoProcessor } />  
 
         <SuccessSection {...videoProcessor} />
         
-        <ProgressSection {...videoProcessor } />
-
         <DownloadSection {...videoProcessor } />
       
+        <ActionButtons {...videoProcessor } />
+        
         <p className='text-base md:text-xl text-center text-slate-500 pt-4'>Developed by: Amir Malik</p>
       
       </div>
+
     </div>
   
   )
